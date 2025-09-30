@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   backend:
     image: ${BACKEND_IMAGE}
@@ -7,6 +6,10 @@ services:
       - .env.prod
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: "jdbc:mysql://${RDS_ENDPOINT}:3306/myapp?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&useSSL=false"
+      SPRING_DATASOURCE_USERNAME: "${SPRING_DATASOURCE_USERNAME}"
+      SPRING_DATASOURCE_PASSWORD: "${SPRING_DATASOURCE_PASSWORD}"
+      SERVER_PORT: "8080"
       RDS_ENDPOINT: ${RDS_ENDPOINT}
     restart: unless-stopped
     ports:
